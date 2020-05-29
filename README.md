@@ -23,7 +23,12 @@ Here are the high level steps involved:
 * Ask agents to use this new URL to login into Connect
 
 ## Functioning
-As soon as the agent tries to save an external deskphone number
+As soon as the agent tries to save an external deskphone number, an `agent.onRefresh` event is triggered and captured by the code that reverts the settings done and also notifies the agent.
+
+![Agent Settings Screen on CCP](AgentSetting.png)
+
+![Agent Notification on Browser Screen](AgentNotification.png)
+
 
 ```javascript
 
