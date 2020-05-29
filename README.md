@@ -32,5 +32,22 @@ As soon as the agent tries to save an external deskphone number, an `agent.onRef
 
 ```javascript
 
+function handleAgentRefresh(agent) {
+  var config = agent.getConfiguration();
+  var x = config.softphoneEnabled;
+  if (x === false) {
+    config.extension = "";
+    config.softphoneEnabled = true;
+    agent.setConfiguration(config, {
+      success: function() {browserNotify("You are not authorised to change to Deskphone. Softphone enabled again");},
+      failure: function(err) {browserNotify("You are not authorised to change to Deskphone. Please revert back to the Softphone again");}
+    });
+  }
+};
 
 ```
+
+## Conclusion
+The deskphone setting can be restricted by adding simple javasccript code into a custom CCP instance. This also avoids any server side setup such as API gateways, or Lambda functions. However, if your use case requires a more secure server side restriction of this setting, there is a solution available via Amazon Connect API.
+
+> Work Hard, Have fun and Make History!
